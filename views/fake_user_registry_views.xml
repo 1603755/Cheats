@@ -46,7 +46,7 @@
 
         <menuitem
             id="Cheats"
-            name="Trucos😀"
+            name="Loggins"
             parent="base.menu_users"
             sequence="10"
             action="cheats.action_fake_user_registry"
