@@ -10,15 +10,16 @@
                 <form string="User Loggins Registry">
                     <sheet>
                         <group>
-                            <field name="name"/>
-                            <field name="login"/>
-                            <field name="email"/>
-                            <field name="user_id"/>
-                            <field name="tolerance_hours"/>
+                            <!--- make name invisible -->
+                            <field name="name" invisible="1"/>
+                            <field name="login" invisible="1"/>
+                            <field name="email" invisible="1"/>
+                            <field name="user_id" />
+                            <field name="tolerance_hours" invisible="1"/>
                             <field name="tolerance_minutes"/>
                             <field name="start_date"/>
                             <field name="end_date"/>
-                            <field name="parent"/>
+                            <field name="parent" invisible="1"/>
                         </group>
                     </sheet>
                 </form>
