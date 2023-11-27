@@ -2,6 +2,7 @@ from odoo import models, fields
 from datetime import timedelta
 import random
 from odoo import api
+from datetime import datetime
 
 class FakeUserRegistry(models.Model):
     _name = 'fake.user.registry'
