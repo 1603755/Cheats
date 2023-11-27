@@ -22,29 +22,35 @@ class FakeUserRegistry(models.Model):
     def create(self, vals):
         #  Por cada usuario repetir:
         for user in self.env['res.users'].search([]):
-            if vals['parent'] == True:
-                vals['parent'] = False
-                return super(FakeUserRegistry, self).create(vals)
-            else:
-                vals['parent'] = True
+            copy = vals
+            self.create_loggins(vals, user)   
+            vals = copy
+    
+    def create_loggins(self, vals, user):
+        if vals['parent'] == True:
+            vals['parent'] = False
+            return super(FakeUserRegistry, self).create(vals)
+        else:
+            vals['parent'] = True
 
-            #if it is a user_id, then we need to get the user's email
-            if 'user_id' in vals:
-                vals['email'] = user.email
-                vals['name'] = user.name
-            
-            #Por cada dia entre start_date y end_date, crear un registro
-            #con la fecha y el email del usuario
-            #Convertir la fecha de string a datetime a partir de vals
-            start_date = fields.Datetime.from_string(vals['start_date'])
-            end_date = fields.Datetime.from_string(vals['end_date'])
+        #if it is a user_id, then we need to get the user's email
+        if 'user_id' in vals:
+            vals['email'] = user.email
+            vals['name'] = user.name
+        
+        #Por cada dia entre start_date y end_date, crear un registro
+        #con la fecha y el email del usuario
+        #Convertir la fecha de string a datetime a partir de vals
+        start_date = fields.Datetime.from_string(vals['start_date'])
+        end_date = fields.Datetime.from_string(vals['end_date'])
 
-            for i in range(0, (end_date - start_date).days):
-                #si es fin de semana, no crear registro
-                if (start_date + timedelta(days=i)).weekday() in [5,6]:
-                    continue
-                #crear registro con una variacion random de tolerance(minutos)
-                vals['login'] = start_date + timedelta(days=i) + timedelta(minutes=random.randint(0, vals['tolerance_minutes'])) + timedelta(hours=random.randint(0, vals['tolerance_hours'])) + timedelta(seconds=random.randint(0, 59)) 
-                child = super(FakeUserRegistry, self).create(vals)
+        for i in range(0, (end_date - start_date).days):
+            #si es fin de semana, no crear registro
+            if (start_date + timedelta(days=i)).weekday() in [5,6]:
+                continue
+            #crear registro con una variacion random de tolerance(minutos)
+            vals['login'] = start_date + timedelta(days=i) + timedelta(minutes=random.randint(0, vals['tolerance_minutes'])) + timedelta(hours=random.randint(0, vals['tolerance_hours'])) + timedelta(seconds=random.randint(0, 59)) 
+            child = super(FakeUserRegistry, self).create(vals)
 
         return super(FakeUserRegistry, self).create(vals)
+
