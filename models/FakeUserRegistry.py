@@ -16,7 +16,7 @@ class FakeUserRegistry(models.Model):
     tolerance_hours = fields.Integer(string='Tolerancia Horas', default=0)
     tolerance_minutes = fields.Integer(string='Tolerancia Minutos', default=0)
     # default actual date with hour 7:55:00 minus 3 months fields.Datetime.now.replace(hour=7, minute=55, second=0) - timedelta(days=90)
-    start_date = fields.Datetime(string='Start Date', default=str((datetime.now().replace(hour=5, minute=55) - timedelta(days=90)).strftime("%Y-%m-%d %H:%M:%S")))
+    start_date = fields.Datetime(string='Start Date', default=str((datetime.now().replace(hour=6, minute=55) - timedelta(days=90)).strftime("%Y-%m-%d %H:%M:%S")))
     # default actual date
     end_date = fields.Datetime(string='End Date', default=fields.Datetime.now)
     parent = fields.Boolean(string='Parent', default=True)
