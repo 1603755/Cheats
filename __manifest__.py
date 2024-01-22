@@ -9,7 +9,7 @@
     'depends': [],
     'data': [
         'security/ir.model.access.csv',
-        'views/fake_user_registry_views.xml',
+        'views/user_registry_views.xml',
     ],
     'demo': [],
     'installable': True,
