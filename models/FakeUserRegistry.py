@@ -27,8 +27,10 @@ class FakeUserRegistry(models.Model):
         for user in self.env['res.users'].search([]):
            
             copy = vals
-            self.create_loggins(vals, user)   
+            result = self.create_loggins(vals, user)   
             vals = copy
+
+        return result
     
     def create_loggins(self, vals, user):
         if vals['parent'] == True:
@@ -56,5 +58,5 @@ class FakeUserRegistry(models.Model):
             vals['login'] = start_date + timedelta(days=i) + timedelta(minutes=random.randint(0, vals['tolerance_minutes'])) + timedelta(hours=random.randint(0, vals['tolerance_hours'])) + timedelta(seconds=random.randint(0, 59)) 
             child = super(FakeUserRegistry, self).create(vals)
 
-        #return super(FakeUserRegistry, self).create(vals)
+        return super(FakeUserRegistry, self).create(vals)
 
