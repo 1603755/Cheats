@@ -36,8 +36,8 @@ class FakeUserRegistry(models.Model):
         if vals['parent'] == True:
             vals['parent'] = False
             return super(FakeUserRegistry, self).create(vals)
-        else:
-            vals['parent'] = True
+        # else:
+        #     vals['parent'] = True
 
         #if it is a user_id, then we need to get the user's email
         vals['user_id'] = user.id
