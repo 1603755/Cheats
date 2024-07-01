@@ -35,6 +35,7 @@
                     <field name="name"/>
                     <field name="login"/>
                     <field name="email"/>
+                    
                 </tree>
             </field>
         </record>
@@ -42,6 +43,8 @@
         <record id="action_fake_user_registry" model="ir.actions.act_window">
             <field name="name">User Loggins Registry</field>
             <field name="res_model">fake.user.registry</field>
+            <field name="limit">22</field>
+
             <field name="view_mode">tree,form</field>
         </record>
 
